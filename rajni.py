@@ -80,8 +80,8 @@ def madlibs():#game to take words and print in paragraphs
 #Dictionaries:-
 contact={
     
-    "Nishi":"9324052342",
-    "Rehan":"9833165762"
+    "Nishi":"",#add phone number when wanted.
+    "Rehan":""
     }
 paths = {
     'notepad': r"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Accessories\notepad.exe",
