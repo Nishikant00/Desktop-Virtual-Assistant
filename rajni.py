@@ -14,6 +14,7 @@ import requests
 from bs4 import *
 from pyjokes import *
 import howdoi
+import smtplib
 # modules end
 
 engine=pyttsx3.init('sapi5')  #API of windows to initialize voices or to get voices
@@ -39,6 +40,14 @@ def Wish():
     else:
         speak("Good evening!")
     speak("hello i am rajni    your one and only lifetime assistant          how can i help you")
+
+def sendEmail(to, content):
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server.ehlo()
+    server.starttls()
+    server.login('addwhenneededlol@gmail.com', 'your-password')
+    server.sendmail('addwhenneededlol@gmail.com', to, content)
+    server.close()
 
 def takeCommand(): # speech recognition command made here
     command = sr.Recognizer() # what command we will pass to our assistant to recognize the command as a source
@@ -92,11 +101,14 @@ grplinks={
     "Mini Project":"BW6sH0XHyII4lKcIxF78nY"
 }
 
+emails={
+    "Nishi":""
+}
 # objects needed 
 web=wb.get(paths['chrome'])
 
 #Main Tasks
-if _name_ == "_main_":
+if __name__ == "__main__":
     Wish()  
     while True:# if this true keep repeating the program
         query = takeCommand().lower() # store user speech in query MAKE SURE EVERY STRING IS IN LOWER CASE
@@ -205,3 +217,17 @@ if _name_ == "_main_":
         elif 'joke' in query or 'bored' in query:
             joke=get_joke('en', 'all')
             speak(joke)
+
+        elif 'email' in query:
+            try:
+                speak("Who do you eant to email?")
+                to = f"{emails[name]}"
+                speak("What should I say?")
+                content = takeCommand()
+                sendEmail(to, content)
+                speak("Email has been sent!")
+            except Exception as e:
+                print(e)
+                speak("Email was not sent")
+
+        
