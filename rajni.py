@@ -1,20 +1,26 @@
+# all modules
 from ast import main
 from datetime import datetime
 from time import strftime
-
+import webbrowser as wb
 import os 
 import pyaudio
 import pyttsx3
 import speech_recognition as sr
 import wikipedia
-import pywhatkit
-
+import pywhatkit 
+from time import *
+import requests
+from bs4 import *
+from pyjokes import *
+import howdoi
+# modules end
 
 engine=pyttsx3.init('sapi5')  #API of windows to initialize voices or to get voices
 voices=engine.getProperty('voices') #to get the voices
-print(voices[1].id)
+print(voices[0].id)
 engine.setProperty('rate',169)
-engine.setProperty('voice',voices[1].id) #to initialise the voice of zira (inbuilt voice api)
+engine.setProperty('voice',voices[0].id) #to initialise the voice of zira (inbuilt voice api)
 #setting the engine to prioritize voice 0
 
 def speak(audio): 
@@ -48,8 +54,10 @@ def takeCommand(): # speech recognition command made here
     except Exception as Error: #if there is error while speaking or a lot of background noise it will give error
         print("Can you repeat?") # error msg
         return "None" #no error return none
-    return query #return what we said to use in the main program.
+    return query.lower() #return what we said to use in the main program.
 
+
+#games
 def madlibs():#game to take words and print in paragraphs
     speak("enter an animal name")
     animals = takeCommand() #speech recognition command called
@@ -71,19 +79,24 @@ def madlibs():#game to take words and print in paragraphs
 
 #Dictionaries:-
 contact={
+    
     "Nishi":"9324052342",
     "Rehan":"9833165762"
     }
 paths = {
     'notepad': r"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Accessories\notepad.exe",
     'vscode': r"C:\Users\User\AppData\Local\Programs\Microsoft VS Code\Code.exe",
+    'chrome':'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe %s'
 }
 grplinks={
     "Mini Project":"BW6sH0XHyII4lKcIxF78nY"
 }
 
+# objects needed 
+web=wb.get(paths['chrome'])
+
 #Main Tasks
-if __name__ == "__main__":
+if _name_ == "_main_":
     Wish()  
     while True:# if this true keep repeating the program
         query = takeCommand().lower() # store user speech in query MAKE SURE EVERY STRING IS IN LOWER CASE
@@ -144,4 +157,51 @@ if __name__ == "__main__":
             msg=takeCommand()
             pywhatkit.sendwhatmsg_to_group_instantly(f"{grplinks[name]}", f"{msg}")
 
+        elif 'open google' in query:          #this is to open google
+            # web=wb.get(paths['chrome'])
+            web.open('google.com')
         
+        elif 'search on google' in query:
+            speak('what should i search?')
+            cmmd=takeCommand().lower()
+            pywhatkit.search(cmmd)
+
+            try:
+                lines=wikipedia.summary(cmmd,sentences=2)
+                speak(lines)
+            except:
+                speak('i guess something went wrong in searching')
+
+            
+
+        elif 'wait' in query:
+            speak('ok')
+            speak('resting for 60 seconds ')
+            sleep(60)            
+            speak('hey !! ')
+            speak('missed me i bet you did')
+
+        elif 'weather' in query:
+            try:
+                speak('Please tell me name of the city')
+                city=takeCommand().lower()
+                print(city)
+                city='temperature in '+city
+                # city='tem'
+                print(city)
+                url='https://www.google.com/search?q={}'.format(city)
+                r=requests.get(url)
+                data=BeautifulSoup(r.text,'html.parser')
+                temp=data.find('div',class_='BNeawe').text
+                speak('the current {} is {}'.format(city,temp))
+            except Exception as e:
+                print(e)
+                # speak('please check your internet connection')
+                speak('oops could not find it ')
+                speak('please check your internet connection')
+
+                speak('sorry for the incovinience please try again')
+
+        elif 'joke' in query or 'bored' in query:
+            joke=get_joke('en', 'all')
+            speak(joke)
