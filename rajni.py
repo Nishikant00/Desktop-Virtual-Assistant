@@ -1,10 +1,10 @@
 # all modules
-from ast import main
+#from ast import main
 from datetime import datetime
 from time import strftime
 import webbrowser as wb
 import os 
-import pyaudio
+#import pyaudio
 import pyttsx3
 import speech_recognition as sr
 import wikipedia
@@ -14,6 +14,7 @@ import requests
 from bs4 import *
 from pyjokes import *
 import howdoi
+import pyautogui
 # modules end
 
 engine=pyttsx3.init('sapi5')  #API of windows to initialize voices or to get voices
@@ -208,6 +209,21 @@ if __name__ == "__main__":
             joke=get_joke('en', 'all')
             speak(joke)
 
+        #volume controls
+        elif 'volume up' in query:
+            pyautogui.press("volumeup")
+        
+        elif 'volume down' in query:
+            pyautogui.press("volumedown")
+        
+        elif 'mute the volume' in query:
+            pyautogui.press("volumemute")
+
+        #screenshot
+        elif 'screenshot' in query:
+            pyautogui.screenshot()
+
+        
         
 
         
