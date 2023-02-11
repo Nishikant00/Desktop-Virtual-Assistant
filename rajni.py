@@ -1,10 +1,10 @@
 # all modules
-#from ast import main
+from ast import main
 from datetime import datetime
 from time import strftime
 import webbrowser as wb
 import os 
-#import pyaudio
+import pyaudio
 import pyttsx3
 import speech_recognition as sr
 import wikipedia
@@ -81,7 +81,6 @@ def madlibs():#game to take words and print in paragraphs
 
 #Dictionaries:-
 contact={
-    
     "Nishi":"",#add phone number when wanted.
     "Rehan":""
     }
@@ -209,11 +208,19 @@ if __name__ == "__main__":
             joke=get_joke('en', 'all')
             speak(joke)
 
-        #volume controls
+        #volume control
+        #numbers problem: sometimes string, sometimes number string, sometimes none
         elif 'volume up' in query:
-            pyautogui.press("volumeup")
+            speak("By how much?")
+            number=takeCommand().lower()
+            for r in range(int(number)):
+                pyautogui.press("volumeup")
         
         elif 'volume down' in query:
+            speak("By how much?")
+            number=takeCommand().lower()
+            for r in range(int(number)):
+                pyautogui.press("volumeup")
             pyautogui.press("volumedown")
         
         elif 'mute the volume' in query:
@@ -221,8 +228,23 @@ if __name__ == "__main__":
 
         #screenshot
         elif 'screenshot' in query:
-            pyautogui.screenshot()
+            screen_shot = pyautogui.screenshot()
+            speak('what would you like to name it?')
+            name=takeCommand().lower()
+            screen_shot.save(f'{name}.png')
 
+        #copy and paste lol
+        elif 'select all'in query:
+            pyautogui.hotkey('ctrl', 'a')
+
+        elif 'copy' in query:
+            pyautogui.hotkey('ctrl', 'c')
+        
+        elif 'paste' in query:
+            pyautogui.hotkey('ctrl', 'v')
+
+        
+        
         
         
 
