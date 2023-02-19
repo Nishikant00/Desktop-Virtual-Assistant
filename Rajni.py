@@ -43,21 +43,7 @@ def Wish():
         speak("Good evening!")
     speak("hello i am rajni    your one and only lifetime assistant          how can i help you")
 
-# def takeCommand(): # speech recognition command made here
-#     command = sr.Recognizer() # what command we will pass to our assistant to recognize the command as a source
-#     with sr.Microphone() as source: # audio source comes from microphone
-#         print("Listening") #if this appears assistant is listening
-#         command.pause_threshold = 1 #assistant will listen till this threshold ends
-#         audio = command.listen(source) #this audio will be listened by asisstant
-#     try:
-#         print("Recognizing") #interact to see if assistant is recognizing
-#         query =  command.recognize_google(audio, language='en-in') #google will change audio to text in english language 
-#         print(f"You said : {query}")#this will print what we said
 
-#     except Exception as Error: #if there is error while speaking or a lot of background noise it will give error
-#         print("Can you repeat?") # error msg
-#         return "None" #no error return none
-#     return query.lower() #return what we said to use in the main program.
 def takeCommand(): # speech recognition command made here
     command = sr.Recognizer() # what command we will pass to our assistant to recognize the command as a source
     with sr.Microphone() as source: # audio source comes from microphone
@@ -131,8 +117,8 @@ def madlibs():#game to take words and print in paragraphs
 ###############################################Dictionaries:-####################################################
 contact={
     
-    "Nishi":"9324052342",
-    "Rehan":"9833165762"
+    "Nishi":"",
+    "Rehan":""
     }
 paths = {
     'notepad': r"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Accessories\notepad.exe",
