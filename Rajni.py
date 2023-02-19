@@ -43,7 +43,21 @@ def Wish():
         speak("Good evening!")
     speak("hello i am rajni    your one and only lifetime assistant          how can i help you")
 
+# def takeCommand(): # speech recognition command made here
+#     command = sr.Recognizer() # what command we will pass to our assistant to recognize the command as a source
+#     with sr.Microphone() as source: # audio source comes from microphone
+#         print("Listening") #if this appears assistant is listening
+#         command.pause_threshold = 1 #assistant will listen till this threshold ends
+#         audio = command.listen(source) #this audio will be listened by asisstant
+#     try:
+#         print("Recognizing") #interact to see if assistant is recognizing
+#         query =  command.recognize_google(audio, language='en-in') #google will change audio to text in english language 
+#         print(f"You said : {query}")#this will print what we said
 
+#     except Exception as Error: #if there is error while speaking or a lot of background noise it will give error
+#         print("Can you repeat?") # error msg
+#         return "None" #no error return none
+#     return query.lower() #return what we said to use in the main program.
 def takeCommand(): # speech recognition command made here
     command = sr.Recognizer() # what command we will pass to our assistant to recognize the command as a source
     with sr.Microphone() as source: # audio source comes from microphone
@@ -94,6 +108,177 @@ def convert(a):
         return 5   
     
 
+def writejava():
+        pyautogui.press('win')
+        sleep(1)
+        pyautogui.typewrite('notepad')
+        sleep(1)
+        pyautogui.press('enter')
+        sleep(2)
+        pyautogui.hotkey('win','up')
+        sleep(1)
+        pyautogui.typewrite(
+            '''
+            import java.lang.*;
+
+            class demo
+            {
+                public static void main(String x[])
+                {
+                    int a=6;
+                    int b=9;
+
+                    System.out.println("Addition="+(a+b));
+                    System.out.println("thank you");
+            
+                }  
+            }''',interval=0.1
+        )
+
+def writesort():
+ 
+    pyautogui.press('win')
+    sleep(0.8)
+    pyautogui.typewrite('notepad')
+    sleep(1)
+    pyautogui.press('enter')
+    sleep(2)
+    pyautogui.hotkey('win','up')
+    sleep(1)
+    {
+            
+
+    }
+    pyautogui.typewrite(
+        '''#include <stdio.h>
+
+    void mergesort(int a[],int lb,int ub)
+    {
+        int m;
+        if(lb<ub)
+        {
+            m=(lb+ub)/2;
+            mergesort(a,lb,m);
+            mergesort(a,m+1,ub);
+            merge(a,lb,m,ub);
+        }
+    }
+
+void merge(int a[],int lb,int m,int ub)
+{
+    int i,j,temp[100],k=0;
+    i=lb;
+    j=m+1;
+    while(i<=m && j<=ub)
+    {
+        if(a[i]<a[j])
+        {
+            temp[k]=a[i];
+            i++;
+            k++;
+        }
+        else{
+            temp[k]=a[j];
+            j++;
+            k++;
+            
+        } 
+    }
+    while(i<=m)
+    {
+        temp[k]=a[i];
+        i++;
+        k++;
+        
+    }
+    while(j<=ub)
+    {
+        temp[k]=a[j];
+        j++;
+        k++;
+        
+    }
+    k=0;
+    for(i=lb;i<=ub;i++)
+    {
+        a[i]=temp[k];
+        k++;
+    } 
+}
+
+int main() {
+int a[100],n,i;
+
+printf("enter number of terms=");
+scanf("%d",&n);
+
+for(i=0;i<n;i++)
+{
+    printf("enter number=");
+    scanf("%d",&a[i]);
+}
+
+mergesort(a,0,n-1);
+for(i=0;i<n;i++)
+{
+printf("%d\t",a[i]);
+}
+return 0;
+}''',interval=0.01
+        
+        )
+    
+def basetemplate():
+    speak('thats awesome')
+
+    pyautogui.press('win')
+    sleep(0.5)
+    pyautogui.typewrite('vs code')
+    sleep(2)
+    pyautogui.press('enter')
+    sleep(8)
+    pyautogui.hotkey('ctrl','alt','win','n')
+    while True:
+        speak('please tell me a file name')
+        filename=takeCommand()
+        if filename=='None':
+            speak('please tell again')
+            filename=takeCommand()
+        else:
+            break
+
+    sleep(4)
+    pyautogui.typewrite('{}.java'.format(filename))
+    sleep(0.7)
+    pyautogui.press('enter')
+    pyautogui.typewrite('{}.java'.format(filename))
+    sleep(1)
+    pyautogui.press('enter')
+    sleep(1)
+    pyautogui.hotkey('win','up')
+    sleep(3)
+    pyautogui.typewrite(
+            '''
+import java.lang.*;
+            import java.util.*;
+
+            class rajni
+            {
+                public static void main(String x[])
+                {
+                Scanner sc = new Scanner(System.in);
+                int a=sc.nextInt();
+                int b=sc.nextInt();
+                System.out.println("Addition="+(a+b));
+                        
+                }  
+            }
+            ''',interval=0.05
+        )
+    speak('sorry but i am not able to change the class name , please change it or java will euin your day')
+
+
+
 #####################################################games
 def madlibs():#game to take words and print in paragraphs
     speak("enter an animal name")
@@ -117,8 +302,8 @@ def madlibs():#game to take words and print in paragraphs
 ###############################################Dictionaries:-####################################################
 contact={
     
-    "Nishi":"",
-    "Rehan":""
+    "Nishi":"9324052342",
+    "Rehan":"9833165762"
     }
 paths = {
     'notepad': r"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Accessories\notepad.exe",
@@ -172,7 +357,6 @@ def get_trending_movies():
 
 ############################################################################################################
 
-# objects needed 
 web=wb.get(paths['chrome'])
 
 tp=['working on it soon','fetching some good results for you','here is what i found ']
@@ -180,6 +364,9 @@ tp=['working on it soon','fetching some good results for you','here is what i fo
 ############################################Main Tasks#############################################################
 if __name__ == "__main__":
     Wish()  
+
+    speak('before starting up please make sure u have troubleshooted the microphone from settings')
+    speak('please do till the time i will take rest')
     while True:# if this true keep repeating the program
         query = takeCommand().lower() # store user speech in query MAKE SURE EVERY STRING IS IN LOWER CASE
         # query=input('enter query=')
@@ -194,28 +381,31 @@ if __name__ == "__main__":
             else:
                 speak("I was not able to recognize your command")
 
-        elif 'open vs code' in query: 
-            os.startfile(paths['vscode'])
+        # elif 'open vs code' in query: 
+        #     os.startfile(paths['vscode'])
 
 
         elif 'who are you ' in query:
             speak('my name  is rajni')
             speak('i was built by some mad peoplefor their project')
 
- ##       
+        
 
-        elif 'open notepad' in query: 
-            os.startfile(paths['notepad'])
+        # elif 'open notepad' in query: 
+        #     os.startfile(paths['notepad'])
 
         elif 'open command prompt' in query:
             os.system('start cmd')
         
-        elif "wikipedia" in query.lower():
-            speak("searching on wikipedia")
-            query=query.replace("wikipedia" ,"")
-            results=wikipedia.summary(query, sentences=2)
-            speak("according to wikipedia")
-            speak(results)
+        elif "wikipedia" in query or 'who' in query:
+            try:
+                speak("searching on wikipedia")
+                query=query.replace("wikipedia" ,"")
+                results=wikipedia.summary(query, sentences=2)
+                speak("according to wikipedia")
+                speak(results)
+            except:
+                speak('ooooops   sorry i think something  went wrong')
 
         elif 'time'  in query:
             query=query.replace("what is the time","")
@@ -226,34 +416,53 @@ if __name__ == "__main__":
         elif 'bye bye' in query:
             speak("bye")
             quit()
+
+        
         
         elif 'youtube' in query:
-            speak("Tell me a youtube video")
-            video=takeCommand()
-            pywhatkit.playonyt(f"{video}")
+            try:
+                speak("Tell me a youtube video")
+                video=takeCommand()
+                pywhatkit.playonyt(f"{video}")
+            except:
+                speak('i think the internet connection is  not proper')
+                speak('please try connecting again')
+
 
         elif 'whatsapp' in query:
-            speak("Contact")
-            name=takeCommand()
-            speak("Message")
-            msg=takeCommand()
-            pywhatkit.sendwhatmsg_instantly(f"+91{contact[name]}", f"{msg}", 15, True, 4)
+            try:
+                speak("Contact")
+                name=takeCommand()
+                speak("Message")
+                msg=takeCommand()
+                pywhatkit.sendwhatmsg_instantly(f"+91{contact[name]}", f"{msg}", 15, True, 4)
+            except:
+                speak('i think the internet connection is  not proper')
+                speak('please try connecting again')
 
         elif 'whastapp group' in query:
-            speak("Group Name")
-            name=takeCommand()
-            speak("Message")
-            msg=takeCommand()
-            pywhatkit.sendwhatmsg_to_group_instantly(f"{grplinks[name]}", f"{msg}")
+            try:
+                speak("Group Name")
+                name=takeCommand()
+                speak("Message")
+                msg=takeCommand()
+                pywhatkit.sendwhatmsg_to_group_instantly(f"{grplinks[name]}", f"{msg}")
+            except:
+                speak('i think the internet connection is  not proper')
+                speak('please try connecting again')
 
         elif 'open google' in query:          #this is to open google
             # web=wb.get(paths['chrome'])
             web.open('google.com')
         
         elif 'search on google' in query:
-            speak('what should i search?')
-            cmmd=takeCommand().lower()
-            pywhatkit.search(cmmd)
+            try:
+                speak('what should i search?')
+                cmmd=takeCommand().lower()
+                pywhatkit.search(cmmd)
+            except:
+                speak('i think the internet connection is  not proper')
+                speak('please try connecting again')
 
             try:
                 lines=wikipedia.summary(cmmd,sentences=2)
@@ -381,6 +590,108 @@ if __name__ == "__main__":
         
         elif 'paste' in query:
             pyautogui.hotkey('ctrl', 'v')
+
+        elif 'notepad' in query:
+            speak(choice(tp))
+
+            pyautogui.press('win')
+            sleep(1)
+            pyautogui.typewrite('notepad')
+            sleep(1)
+            pyautogui.press('enter')
+            sleep(2)
+            pyautogui.hotkey('win','up')
+            # pyautogui.typewrite('hellohello')
+
+        elif 'thank you' in query:
+            speak('u are always welcome')
+
+        # elif 'notepad plus plus' in query:
+        #     speak(choice(tp))
+
+        #     pyautogui.press('win')
+        #     pyautogui.typewrite('notepad++')
+        #     sleep(1)
+        #     pyautogui.press('enter')
+
+        elif 'vs code' in query or 'visual studio code' in query:
+            speak(choice(tp))
+
+            pyautogui.press('win')
+            pyautogui.typewrite('vscode')
+            sleep(1)
+            pyautogui.press('enter')
+            sleep(3)
+            pyautogui.hotkey('win','up')
+
+        elif 'settings' in query:
+            speak(choice(tp))
+
+            pyautogui.press('win')
+            sleep(2)
+            pyautogui.typewrite('settings')
+            sleep(1)
+            pyautogui.press('enter')
+
+        elif 'camera' in query:
+            speak(choice(tp))
+
+            pyautogui.press('win')
+            sleep(2)
+            pyautogui.typewrite('camera')
+            sleep(1)
+            pyautogui.press('enter')
+            speak('smile please')
+            sleep(4)
+            
+            pyautogui.press('enter')
+
+
+        elif 'file explorer' in query:
+            speak(choice(tp))
+
+
+            pyautogui.press('win')
+            sleep(2)
+            pyautogui.typewrite('file explorer')
+            sleep(1)
+            pyautogui.press('enter')
+            sleep(1)
+            pyautogui.hotkey('win','up')
+
+        elif 'calculator' in query:
+            speak(choice(tp))
+
+            pyautogui.press('win')
+            sleep(2)
+            pyautogui.typewrite('calculator')
+            pyautogui.press('enter')
+
+        elif 'write a java program' in query:
+            speak('that seems interesting')
+            speak(choice(tp))
+
+            writejava()
+
+        elif 'write a sorting program' in query:
+            speak('writing in c language')
+            sleep(0.2)
+            writesort()
+
+        elif 'write a base template' in query:
+            basetemplate()
+            
+
+
+
+        del(query)
+
+
+
+
+
+
+        
 
 
 
