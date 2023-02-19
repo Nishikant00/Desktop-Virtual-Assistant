@@ -202,7 +202,7 @@ if __name__ == "__main__":
             speak('my name  is rajni')
             speak('i was built by some mad peoplefor their project')
 
-        
+ ##       
 
         elif 'open notepad' in query: 
             os.startfile(paths['notepad'])
