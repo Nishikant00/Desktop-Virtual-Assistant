@@ -16,6 +16,7 @@ from pyjokes import *
 import howdoi
 from random import *
 import pyautogui
+import openai
 # *modules end*
 
 ############################ THE HEART ###########################################################################3
@@ -262,6 +263,7 @@ def basetemplate():
 import java.lang.*;
             import java.util.*;
 
+            
             class rajni
             {
                 public static void main(String x[])
@@ -334,6 +336,17 @@ apidicts={
 
 }
 
+API_KEY_chatgpt='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'
+openai.api_key = API_KEY_chatgpt
+
+def do(txt):
+    response = openai.Completion.create(model="text-davinci-003", 
+                                        prompt=txt, 
+                                        temperature=0,
+                                          max_tokens=1024
+                                        )
+    r=response.choices[0].text
+    return r
 
 def get_latest_news(cat):
     news_headlines = []
@@ -354,6 +367,9 @@ def get_trending_movies():
     for r in results:
         trending_movies.append(r["original_title"])
     return trending_movies[:5]
+
+
+
 
 ############################################################################################################
 
@@ -413,7 +429,7 @@ if __name__ == "__main__":
             timee=n.strftime('%H:%M:%S')
             speak("the time is "+ timee)
 
-        elif 'bye bye' in query:
+        elif 'bye bye' in query or 'bye' in query:
             speak("bye")
             quit()
 
@@ -678,26 +694,28 @@ if __name__ == "__main__":
             sleep(0.2)
             writesort()
 
-        elif 'write a base template' in query:
+        elif 'create a base template' in query:
             basetemplate()
-            
+
+        elif 'write a program' in query:
+            speak('ok')
+            txt=query
+            text=do(txt)
+            # print(text)
+            pyautogui.press('win')
+            sleep(2)
+            pyautogui.typewrite('notepad')
+            sleep(2)
+            pyautogui.press('enter')
+            sleep(2)
+            pyautogui.hotkey('win','up')
+            sleep(2)
+            pyautogui.typewrite(text,interval=0.02)
+            speak('i hope its correct')
+
 
 
 
         del(query)
-
-
-
-
-
-
-        
-
-
-
-                        
-
-        
-
-
+##############################   END ###########################################################
 #########################################################################################################################        
