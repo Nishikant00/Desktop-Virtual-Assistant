@@ -9,7 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-import rajni
+import Rajni
 from PyQt5 import QtCore , QtGui , QtWidgets
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
@@ -352,11 +352,11 @@ class Ui_RAJNI(object):
     self.EXIT.setText(_translate("RAJNI", "EXIT"))
   
   def startTask(self):
-  	self.label1 = QtGui.QMovie("speech_gif.gif")
-  	self.Gif_2.setMovie(self.label1)
-  	self.label1.start()
+    self.label1 = QtGui.QMovie("speech_gif.gif")
+    self.Gif_2.setMovie(self.label1)
+    self.label1.start()
   def run(self):
-    rajni.takeCommand()
+    Rajni.takeCommand()
 
 if __name__ == "__main__":
   import sys

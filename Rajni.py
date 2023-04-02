@@ -1,10 +1,8 @@
 # all modules
-from ast import main
 from datetime import datetime
-from time import strftime
 import webbrowser as wb
 import os 
-import pyaudio
+#import pyaudio
 import pyttsx3
 import speech_recognition as sr
 import wikipedia
@@ -32,32 +30,6 @@ def speak(audio):
     engine.runAndWait()
     engine.runAndWait()
 
-def Wish():
-    hour = int(datetime.now().hour)  #typecasting time into integer value to to wish according to time.
-    #  .now() method provides the current time
-    if hour>=0 and hour<=12:
-        speak("Good Morning !")
-    elif hour<12 and hour>=5:
-        speak("Good Afternoon")
-    else:
-        speak("Good evening!")
-    speak("hello i am rajni    your one and only lifetime assistant          how can i help you")
-
-# def takeCommand(): # speech recognition command made here
-#     command = sr.Recognizer() # what command we will pass to our assistant to recognize the command as a source
-#     with sr.Microphone() as source: # audio source comes from microphone
-#         print("Listening") #if this appears assistant is listening
-#         command.pause_threshold = 1 #assistant will listen till this threshold ends
-#         audio = command.listen(source) #this audio will be listened by asisstant
-#     try:
-#         print("Recognizing") #interact to see if assistant is recognizing
-#         query =  command.recognize_google(audio, language='en-in') #google will change audio to text in english language 
-#         print(f"You said : {query}")#this will print what we said
-
-#     except Exception as Error: #if there is error while speaking or a lot of background noise it will give error
-#         print("Can you repeat?") # error msg
-#         return "None" #no error return none
-#     return query.lower() #return what we said to use in the main program.
 def takeCommand(): # speech recognition command made here
     command = sr.Recognizer() # what command we will pass to our assistant to recognize the command as a source
     with sr.Microphone() as source: # audio source comes from microphone
@@ -73,6 +45,17 @@ def takeCommand(): # speech recognition command made here
         print("Can you repeat?") # error msg
         return "None" #no error return none
     return query.lower() #return what we said to use in the main program.
+
+def Wish():
+    hour = int(datetime.now().hour)  #typecasting time into integer value to to wish according to time.
+    #  .now() method provides the current time
+    if hour>=0 and hour<=12:
+        speak("Good Morning !")
+    elif hour<12 and hour>=5:
+        speak("Good Afternoon")
+    else:
+        speak("Good evening!")
+    speak("hello i am rajni    your one and only lifetime assistant          how can i help you")
 
 ################################################HEART END #####################################################3333
 
@@ -302,8 +285,10 @@ def madlibs():#game to take words and print in paragraphs
 ###############################################Dictionaries:-####################################################
 contact={
     
-    "Nishi":"9324052342",
-    "Rehan":"9833165762"
+    "nishi":"9324052342",
+    "rehan":"9833165762",
+    "vivek":"7506375933",
+    "rohit":"9892362829"
     }
 paths = {
     'notepad': r"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Accessories\notepad.exe",
@@ -547,7 +532,7 @@ if __name__ == "__main__":
                 speak(i)
 
         #volume control
-        #numbers problem: sometimes string, sometimes number string, sometimes none
+        
         elif 'volume up' in query:
             speak("By how much?")
             num=takeCommand().lower()
