@@ -298,7 +298,8 @@ paths = {
     'chrome':'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe %s'
 }
 grplinks={
-    "Mini Project":"BW6sH0XHyII4lKcIxF78nY"
+    "project":"BW6sH0XHyII4lKcIxF78nY",
+    "mini project":""
 }
 
 
@@ -432,10 +433,25 @@ if __name__ == "__main__":
 
         elif 'whatsapp' in query:
             try:
-                speak("Contact")
-                name=takeCommand()
-                speak("Message")
-                msg=takeCommand()
+                while True:
+                    speak("Contact")
+                    print("Contact")
+                    name=takeCommand()
+                    if name == 'None' or name not in contact:
+                        print("Mention Contact Again")
+                        continue
+                    else:
+                        break
+        
+                while True:
+                    speak("Message")
+                    print ("message")
+                    msg=takeCommand()
+                    if msg == 'None':
+                        print("Mention Message Again")
+                        continue
+                    else:
+                        break
                 pywhatkit.sendwhatmsg_instantly(f"+91{contact[name]}", f"{msg}", 15, True, 4)
             except:
                 speak('i think the internet connection is  not proper')
@@ -443,10 +459,24 @@ if __name__ == "__main__":
 
         elif 'whastapp group' in query:
             try:
-                speak("Group Name")
-                name=takeCommand()
-                speak("Message")
-                msg=takeCommand()
+                while True:
+                    speak("Group Name")
+                    print("Contact")
+                    name=takeCommand()
+                    if name == 'None' or name not in grplinks:
+                        print("Mention Contact Again")
+                        continue
+                    else:
+                        break
+                while True:
+                    speak("Message")
+                    print ("message")
+                    msg=takeCommand()
+                    if msg == 'None':
+                        print("Mention Message Again")
+                        continue
+                    else:
+                        break
                 pywhatkit.sendwhatmsg_to_group_instantly(f"{grplinks[name]}", f"{msg}")
             except:
                 speak('i think the internet connection is  not proper')
