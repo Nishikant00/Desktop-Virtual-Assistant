@@ -729,7 +729,35 @@ if __name__ == "__main__":
             speak('i hope its correct')
 
 
+        elif 'stock' in query or 'market' in query:
+                    
+                    try:
+                    
+                        speak("can you please specify the company")
+                        p=takeCommand()
+                        # p =input("enter company")
+                        
+                        if p is not None:
 
+            
+                            # Making a GET request
+                            r = requests.get('https://www.google.com/search?q=share price of {}'.format(p))
+                            
+                            # check status code for response received
+                            # success code - 200
+                            print(r)
+                            
+                            # Parsing the HTML
+                            soup = BeautifulSoup(r.text, 'html.parser')
+                            temp=soup.find('div',class_='BNeawe iBp4i AP7Wnd').text
+                            print(temp)
+                            tell="the share price of {} is {}".format(p,temp)
+                            speak(tell)
+                        else:
+                            speak("sorry i couldnt get you please try again")
+                            
+                    except:
+                        speak("please check your internet connection") 
 
         del(query)
 ##############################   END ###########################################################
