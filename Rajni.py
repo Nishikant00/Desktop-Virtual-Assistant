@@ -364,7 +364,7 @@ web=wb.get(paths['chrome'])
 tp=['working on it soon','fetching some good results for you','here is what i found ']
 
 ############################################Main Tasks#############################################################
-if __name__ == "__main__":
+def Task_GUI():
     Wish()  
 
     speak('before starting up please make sure u have troubleshooted the microphone from settings')
